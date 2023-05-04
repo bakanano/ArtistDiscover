@@ -10,11 +10,12 @@ import TodayIcon from '@mui/icons-material/Today';
 import moment from "moment";
 
 export default function UserCard(props) {
+  console.log(props)
   const {name, country, image, playcount, registered, type} = props.userData.user;
   const avatarUrl = image?.[3]?.["#text"];
   const hasLocation = country !== "None";
   const registeredDate = moment.unix(registered.unixtime).format("DD MMM YYYY");
-
+  
   let typeColor = "";
 
   switch(type) {
@@ -24,7 +25,7 @@ export default function UserCard(props) {
     case "subscriber":
       typeColor = "subscriberColor";
       break;
-    case "alum":
+    case "alumn":
       typeColor = "alumColor";
       break;
     case "mod":
@@ -72,6 +73,18 @@ export default function UserCard(props) {
           />
         </Tooltip>
       </div>
+      {props.topArtist && (
+            <div>
+              <Typography variant="h6" component="h6" style={{ marginTop: "16px" }}>
+                Top 3 Artists for {name}:
+              </Typography>
+              <ul>
+                {props.topArtist.artist.map((artist) => (
+                  <li key={artist.name}>{artist.name} - {Number(artist.playcount).toLocaleString()} scrobbles</li>
+                ))}
+              </ul>
+            </div>
+      )}
       </CardContent>
     </Card>
     </section>
