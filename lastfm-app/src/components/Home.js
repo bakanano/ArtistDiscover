@@ -42,7 +42,7 @@
               setUserData(response.data);
             })
             .catch((error) => {
-              setError(error);
+              setError("Oops! Something went wrong. Please try again.");
             });
     }
 
@@ -54,9 +54,30 @@
       if (userData) {
         const ROOT_API_ARTIST = `https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${userData.user.name}&api_key=${process.env.REACT_APP_API_KEY}&format=json&limit=3`;
         axios.get(ROOT_API_ARTIST)
-              .then((response) => setTopArtist(response.data.topartists))
+              .then((response) => {
+                setTopArtist(response.data.topartists);
+              })
+              .catch((error) => {
+                setError("Oops! Something went wrong while fetching top artists. Please try again.");
+              });
+    }
+    }, [userData]);
+
+    useEffect(() => {
+      if (topArtist) {
+        const topThreeArtists = topArtist.artist.map((artist) => artist.name);
+        topThreeArtists.map((artistName) => {
+          axios.get(`https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${artistName}&api_key=${process.env.REACT_APP_API_KEY}&format=json&limit=3`)
+                .then((response) => {
+                  console.log(response.data);
+                })
+                .catch((error) => {
+                  console.error(error);
+                  setError("Something went wrong while fetching similar artists. Please try again.");
+                });
+        })
       }
-    }, [userData])
+    }, [topArtist])
 
     return (
       <div>
@@ -72,7 +93,8 @@
               InputProps={{
                 classes: {
                   root: classes.root,
-                  input: classes.input
+                  input: classes.input,
+                  shrink: classes.shrink
                 }
               }}
           />
@@ -83,11 +105,7 @@
             </IconButton>
         </section>
         <div className="error">
-          {error && (
-            <Typography variant="h6" component="h6" color="error">
-              Oops! Something went wrong. Please check if the Last.fm username is correct and try again.
-            </Typography>
-          )}
+          {error}
         </div>
         {userData && (<UserCard userData={userData} topArtist={topArtist}/>)}
       </div>
