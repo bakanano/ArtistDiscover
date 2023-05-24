@@ -8,6 +8,7 @@
 
   import ProfileURL from "./UserProfileUrl";
   import UserCard from "./UserCard";
+  import TopThreeSection from './TopThree';
 
   import {useStyles} from "../styles";
 
@@ -26,6 +27,7 @@
     const classes = useStyles();
 
     function search() {
+      setError(null);
       axios.get(`${ROOT_API_USER}${username}&api_key=${API_KEY}&format=json`)
             .then((response) => {
               setUserData(response.data);
@@ -89,11 +91,7 @@
 
     return (
       <div>
-        <section className="topThreeSection" style={{ color: 'red' }}>
-            <ul>
-              {topThreeArtists.map((artist) => (<li className="topList" key={artist}><a href={`https://www.last.fm/music/${encodeURIComponent(artist)}`} target="_blank" rel="noopener noreferrer">{artist}</a></li>))}
-            </ul>
-        </section>
+        <TopThreeSection topThreeArtists={topThreeArtists}/>
         <section className="profileAndSearch">
           <ProfileURL/>
           <TextField
@@ -117,16 +115,18 @@
               <SearchIcon/>
             </IconButton>
         </section>
+        {error && (
         <div className="error">
           {error}
         </div>
-        {userData && (
-          <UserCard 
-            userData={userData} 
-            topArtist={topArtist} 
-            recommendation={recommendation}
-          />
         )}
+      {!error && userData && (
+        <UserCard 
+          userData={userData} 
+          topArtist={topArtist} 
+          recommendation={recommendation}
+        />
+      )}
       </div>
     )
   }
