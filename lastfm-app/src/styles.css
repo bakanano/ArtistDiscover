@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: #2E2E2E;
+}
+
+li {
+  list-style-type: none;
+  padding: 5px;
+}
+
+.profileURL {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  margin-right: 10px;
+}
+
+/* Flex center*/
+.profileAndSearch, .error, .cardContainer, li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileAndSearch {
+  height: 50vh;
+}
+
+.topList {
+  color: #ADD8E6;
+}
+.cardContainer {
+  height: 10vh;
+}
+
+.userCard {
+  width: 300px;
+  height: 400px;
+}
+
+.userColor {
+  background-color: lightgray;
+  color: black;
+  padding: 2px 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.subscriberColor {
+  background-color: gray;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.alumColor {
+  background-color: purple;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.modColor {
+  background-color: gold;
+  color: black;
+  padding: 2px 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.error {
+  background-color: #F9F9F9;
+  border-style: none;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 0;
+}
+
+/* Media Queries */
+@media screen and (max-width: 650px) {
+  .profileURL {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .makeStyles-topThreeSection-3 ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+}
