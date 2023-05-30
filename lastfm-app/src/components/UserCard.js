@@ -1,7 +1,4 @@
 import React from "react";
-import DownloadIcon from '@mui/icons-material/Download';
-import GetAppIcon from '@mui/icons-material/GetApp';
-import IconButton from "@mui/material/IconButton";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -11,7 +8,6 @@ import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import Tooltip from '@mui/material/Tooltip';
 import TodayIcon from '@mui/icons-material/Today';
 import moment from "moment";
-import html2canvas from "html2canvas";
 
 export default function UserCard(props) {
   const {name, country, image, playcount, registered, type, url} = props.userData.user;
@@ -19,7 +15,6 @@ export default function UserCard(props) {
   const profileUrl = url;
   const hasLocation = country !== "None";
   const registeredDate = moment.unix(registered.unixtime).format("DD MMM YYYY");
-  const [imageDataUri, setImageDataUri] = React.useState(null);
   let typeColor = "";
 
   switch(type) {
@@ -38,9 +33,6 @@ export default function UserCard(props) {
     default:
       typeColor = "";
       break;
-  }
-
-  function handleDownload() {
   }
 
   return (
@@ -80,12 +72,6 @@ export default function UserCard(props) {
             </div>
           )
         }
-        // action={
-        //   <IconButton onClick={handleDownload}>
-        //     <DownloadIcon/>
-        //   </IconButton>
-          
-        // }
       />
       <CardContent>
           {props.recommendation && (
@@ -102,11 +88,6 @@ export default function UserCard(props) {
           )}
       </CardContent>
     </Card>
-
-    {imageDataUri && (
-      <a href={imageDataUri} download="user-card.png">
-      </a>
-    )}
     </section>
   )
 }

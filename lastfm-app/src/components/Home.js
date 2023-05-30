@@ -33,7 +33,7 @@
               setUserData(response.data);
             })
             .catch((error) => {
-              setError("Oops! Something went wrong. Please try again.");
+              setError("Oops! User not found. Please try again.");
             });
     }
 
@@ -72,49 +72,50 @@
 
 
     useEffect(() => {
-      if (topArtist) {
-        const topThreeArtists = topArtist.artist.map((artist) => artist.name);
-        setTopThreeArtists(topThreeArtists);
-        topThreeArtists.map((artistName) => {
-          axios.get(`https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${artistName}&api_key=${process.env.REACT_APP_API_KEY}&format=json&`)
-                .then((response) => {
-                  const similarArtist = response.data.similarartists.artist.map(i => i.name);
-                  const generatedRecommendations = generateRecommendations(topThreeArtists, similarArtist);
-                  setRecommendation(generatedRecommendations);
-                })
-                .catch((error) => {
-                  setError("Something went wrong while fetching similar artists. Please try again.");
-                });
-        })
+      try {
+        if (topArtist) {
+          const topThreeArtists = topArtist.artist.map((artist) => artist.name);
+          setTopThreeArtists(topThreeArtists);
+          topThreeArtists.map((artistName) => {
+            axios.get(`https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${artistName}&api_key=${process.env.REACT_APP_API_KEY}&format=json&`)
+            .then((response) => {
+                const similarArtist = response.data.similarartists.artist.map(i => i.name);
+                const generatedRecommendations = generateRecommendations(topThreeArtists, similarArtist);
+                setRecommendation(generatedRecommendations);
+            })
+          })
+        }
+      } catch (error) {
+        setError("Something went wrong while fetching similar artists. Please try again.");
       }
     }, [topArtist])
 
     return (
       <div>
         <TopThreeSection topThreeArtists={topThreeArtists}/>
-        <section className="profileAndSearch">
-          <ProfileURL/>
-          <TextField
-              id="outlined-basic"
-              variant="outlined"
-              label="Last.fm username"
-              value={username}
-              onChange={onChange}
-              className={`${classes.root} ${classes.input}`}
-              InputProps={{
-                classes: {
-                  root: classes.root,
-                  input: classes.input,
-                  shrink: classes.shrink
-                }
-              }}
-          />
-          <IconButton
-            color="secondary"
-            onClick={search}>
-              <SearchIcon/>
-            </IconButton>
-        </section>
+          <section className="profileAndSearch">
+            <ProfileURL/>
+            <TextField
+                id="outlined-basic"
+                variant="outlined"
+                label="Last.fm username"
+                value={username}
+                onChange={onChange}
+                className={`${classes.root} ${classes.input}`}
+                InputProps={{
+                  classes: {
+                    root: classes.root,
+                    input: classes.input,
+                    shrink: classes.shrink
+                  }
+                }}
+              />
+            <IconButton
+              color="secondary"
+              onClick={search}>
+                <SearchIcon/>
+              </IconButton>
+            </section>
         {error && (
         <div className="error">
           {error}
