@@ -10,7 +10,7 @@ This project is a web application built with ReactJS and Material-UI library. It
 
 - Fetches user data from Last.fm API based on Last.fm username
 - Generates unique artist recommendations based on the user's top three artists
-- Displays user information including their top 3 artists, recommended artists, and profile details
+- Displays user information including their top 3 artists, recommended artists, and profile details such as total scrobbles (listens) and how long the user has been scrobbling for
 - Responsive design using Material-UI and media queries for optimal viewing on various devices
 
 ## Technologies Used
