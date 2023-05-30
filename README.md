@@ -54,8 +54,13 @@ This project is a web application built with ReactJS and Material-UI library. It
 This project can be deployed using a platform like Netlify or Vercel. Follow the deployment instructions provided by the platform of your choice.
 
 ## Screenshots
+![Main content](https://github.com/bakanano/ArtistDiscover/assets/17448534/4ceba7fb-413b-4042-b738-9b62587ffe32)
+![Username does not exist](https://github.com/bakanano/ArtistDiscover/assets/17448534/3a97fb3f-ac49-431e-a892-8757c64ea9a2)
+![On search, showing top 3 artist and a user card](https://github.com/bakanano/ArtistDiscover/assets/17448534/d17152f8-2504-40e2-bd98-8b4b7a587093)
+![Mobile view 1](https://github.com/bakanano/ArtistDiscover/assets/17448534/de5b5525-0efe-46f6-9f60-782ae805bdb9)
+![Mobile view 2](https://github.com/bakanano/ArtistDiscover/assets/17448534/26cf8d4d-6f6d-4fae-9851-d7ca3e5aa3c7)
 
-Include relevant screenshots or GIFs of your application here to showcase its features and appearance.
+
 
 ## Contributing
 
