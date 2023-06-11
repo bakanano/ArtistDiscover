@@ -33,14 +33,6 @@ This project is a web application built with ReactJS and Material-UI library. It
    ```bash
    npm install
    ```
-4. Set up environment variables:
-   - Create a `.env` file in the root of the project.
-   - Add your Last.fm API key to the `.env` file:
-     ```
-     REACT_APP_API_KEY=your-api-key
-     ```
-   - Save the `.env` file.
-
 ## Usage
 
 1. Start the development server:
