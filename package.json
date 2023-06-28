@@ -1,5 +1,5 @@
 {
-  "name": "lasfm-app",
+  "name": "artist-discover",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
